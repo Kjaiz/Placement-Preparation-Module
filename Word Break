@@ -1,0 +1,21 @@
+class Solution:
+    def someProblem(self, nums) -> bool:
+        # 1. some corner case discussion
+        if not nums:
+            return []
+
+        # 2. the recursive function
+        @cache
+        def helper(s):
+            # 2.1 base cases for recursion
+            if len(s) == 0:
+                return True
+            # 2.2 recursive call with smaller input size
+            for word in wordDict:
+                if s.startswith(word):
+                    if helper(s[len(word):]):
+                        return True
+            return False
+
+        # 3. wrap the function call
+        return helper(s)
